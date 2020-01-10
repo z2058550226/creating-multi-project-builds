@@ -1,0 +1,2 @@
+include 'greeting-library', 'greeter'
+rootProject.name = 'creating-multi-project-builds'
