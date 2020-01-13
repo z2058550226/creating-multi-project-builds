@@ -1,5 +1,6 @@
 plugins {
-    id 'groovy' // The groovy plugin contains java plugin, so here is no need to add the java plugin
+    // id 'groovy' // The groovy plugin contains java plugin, so here is no need to add the java plugin
+    id 'java' // Keeping this line is just for semantics
     id 'application'
 }
 
@@ -8,7 +9,19 @@ mainClassName = 'greeter.Greeter'
 dependencies {
     compile project(':greeting-library')
 
-    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4', {
-        exclude module: 'groovy-all'
+    // testCompile 'org.spockframework:spock-core:1.0-groovy-2.4', {
+    //     exclude module: 'groovy-all'
+    // }
+}
+
+distZip {
+    from project(':docs').asciidoctor, {
+        into "${project.name}-${version}"
+    }
+}
+
+distTar {
+    from project(':docs').asciidoctor, {
+        into "${project.name}-${version}"
     }
 }
